@@ -1,5 +1,5 @@
 # Welcome to our Sample Chatbot App, powered by Chatbot
-require 'HTTParty'
+require 'httparty'
 
 @phone_number = "+16175832486" #YOUR OWN PHONE NUMBER(Must be verified on twilio)
 @chatbot_number = "+16176525519" #YOUR TWILIO NUMBER(Find it here - https://www.twilio.com/console/phone-numbers/incoming)
