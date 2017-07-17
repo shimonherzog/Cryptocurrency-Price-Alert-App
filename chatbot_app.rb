@@ -38,21 +38,21 @@ def latest_message
 end 
 
 def wikipedia
-	send_message("Hi! I'm your Wikipedia chatbot! What do you want to know more about?")
-	loop do 
-		wait_for_message
-		title=latest_message.split.map(&:capitalize).join('_')
-	wikipedia_url = "https://xap.ix-io.net/api/v1/wikipedia/page_summary?filter%5Btitle%5D=#{title}&fields%5Bpage_summary%5D=title%2Cextract%2Clang%2Cdir%2Ctimestamp%2Cdescription%2Crandom_id%2Cthumbnail_height%2Cthumbnail_width%2Cthumbnail_source&sort=random_id&page%5Bnumber%5D=1&page%5Bsize%5D=100"
-	wikipedia_response = HTTParty.get(wikipedia_url, headers: @header) 
-	wikipedia_extract = wikipedia_response["page_summary"].first["extract"]
-	puts "You searched for '#{latest_message}'. And Here's the information on wikipedia about '#{latest_message}'. This information is also sent to your number #{@phone_number}."
-	puts "----"
-	puts wikipedia_extract
-	send_message(wikipedia_extract)
-	puts "----"
-	puts "Send another word you want to know more about to the chatbot or Press Control+C to exit."
-	puts "----"
-	end 
+	send_message("Hi! It's been 10 minutes! Do you miss me?")
+	# loop do 
+	# 	wait_for_message
+	# 	title=latest_message.split.map(&:capitalize).join('_')
+	# wikipedia_url = "https://xap.ix-io.net/api/v1/wikipedia/page_summary?filter%5Btitle%5D=#{title}&fields%5Bpage_summary%5D=title%2Cextract%2Clang%2Cdir%2Ctimestamp%2Cdescription%2Crandom_id%2Cthumbnail_height%2Cthumbnail_width%2Cthumbnail_source&sort=random_id&page%5Bnumber%5D=1&page%5Bsize%5D=100"
+	# wikipedia_response = HTTParty.get(wikipedia_url, headers: @header) 
+	# wikipedia_extract = wikipedia_response["page_summary"].first["extract"]
+	# puts "You searched for '#{latest_message}'. And Here's the information on wikipedia about '#{latest_message}'. This information is also sent to your number #{@phone_number}."
+	# puts "----"
+	# puts wikipedia_extract
+	# send_message(wikipedia_extract)
+	# puts "----"
+	# puts "Send another word you want to know more about to the chatbot or Press Control+C to exit."
+	# puts "----"
+	# end 
 end 
 
 

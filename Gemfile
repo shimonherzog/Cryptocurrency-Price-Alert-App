@@ -32,6 +32,8 @@ gem 'spring',        group: :development
 
 gem 'puma'
 
+gem 'httparty'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
