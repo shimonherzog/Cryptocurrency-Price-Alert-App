@@ -16,7 +16,7 @@ def bitcoin_price_alert
   	if @bitcoin_percent_change_1h > 1
   		send_slack_message("Bitcoin has jumped #{@bitcoin_percent_change_1h} percent in the past hour! The current price is #{@bitcoin_current_price} USD.")
   	elsif @bitcoin_percent_change_1h < -1
-  		bitcoin_percent_change_1h_positive = -@bitcoin_percent_change_1h
+  		@bitcoin_percent_change_1h_positive = - @bitcoin_percent_change_1h
   		send_slack_message("Bitcoin has dropped #{@bitcoin_percent_change_1h_positive} percent in the past hour! The current price is #{@bitcoin_current_price} USD.")
   	end 
 end 
@@ -27,10 +27,10 @@ def send_slack_message(message)
 	    "text":message
 	}.to_json
 	header_slack={"Content-type": "application/json"}
-	HTTParty.post(webhook_url, body: body, headers: @header) 
+	HTTParty.post(webhook_url, body: body, headers: header_slack) 
 end 
 
-puts "Bitcoin has jumped #{@bitcoin_percent_change_1h} percent in the past hour! The current price is #{@bitcoin_current_price} USD."
+puts "Bitcoin has changed #{@bitcoin_percent_change_1h} percent in the past hour! The current price is #{@bitcoin_current_price} USD."
 bitcoin_price_alert
 
 
