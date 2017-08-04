@@ -1,10 +1,13 @@
-# Welcome to our Sample Chatbot App, powered by Chatbot
+# Welcome to our Cryptocurrency Price Alert App, powered by XapiX
 require 'httparty'
 
 @header = {
   "Accept": "application/json",
-  "X-Api-Key": "wBA7N4NiYpw3O4IK709Wo8QpUCa1uvm8AJnayEm2" #YOUR OWN XAPIX Authentication (token_auth)
+  "X-Api-Key": "mAXz08b8lgU7fyrtf2k7BEiP68LnoUVMfbazagvJ", #YOUR OWN XAPIX Authentication (token_auth)
+  "X-Device-User-Token": "cr1NO_mknfCMntZBJEWRkKyXRQ4Z3mODVcZ3U5vE9Ms" #YOUR Device-User-Token (can be copied from "requested headers" session in any query)
 }
+
+@channel="@feiran-xapix-io" #YOUR SLAKC USERNAME IN THE FORMAT OF @username
 
 @bitcoin_url = "https://xap.ix-io.net/api/v1/coin_market_cap/specific_currencies?filter%5Bcurrency%5D=bitcoin&fields%5Bspecific_currencies%5D=currency%2Cname%2Csymbol%2Crank%2Cprice_usd%2Cprice_btc%2Cvolume_usd_24h%2Cmarket_cap_usd%2Cavailable_supply%2Ctotal_supply%2Cpercent_change_1h%2Cpercent_change_24h%2Cpercent_change_7d%2Clast_updated%2Cx_id&sort=currency&page%5Bnumber%5D=1&page%5Bsize%5D=10000
 "
@@ -22,12 +25,11 @@ def bitcoin_price_alert
 end 
 
 def send_slack_message(message)
-	webhook_url="https://hooks.slack.com/services/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"
-	body={
-	    "text":message
-	}.to_json
-	header_slack={"Content-type": "application/json"}
-	HTTParty.post(webhook_url, body: body, headers: header_slack) 
+    channel_url=CGI.escape(@channel)
+    message_url=CGI.escape(message)
+    send_message_url="https://xap.ix-io.net/api/v1/slack_api/chat_postMessages?filter%5Bchannel%5D=#{channel_url}&filter%5Btext%5D=#{message_url}&fields%5Bchat_postMessages%5D=x_ok%2Cchannel%2Cx_ts%2Cmessage_text%2Cmessage_username%2Cmessage_bot_id%2Cmessage_type%2Cmessage_subtype%2Ctext%2Cmessage_x_ts&sort=x_ts&page%5Bnumber%5D=1&page%5Bsize%5D=100"
+    
+    send_message = HTTParty.get(send_message_url, headers: @header) 
 end 
 
 puts "Bitcoin has changed #{@bitcoin_percent_change_1h} percent in the past hour! The current price is #{@bitcoin_current_price} USD."
