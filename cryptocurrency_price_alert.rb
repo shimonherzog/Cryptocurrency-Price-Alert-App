@@ -3,11 +3,11 @@ require 'httparty'
 
 @header = {
   "Accept": "application/json",
-  "X-Api-Key": "mAXz08b8lgU7fyrtf2k7BEiP68LnoUVMfbazagvJ", #YOUR OWN XAPIX Authentication (token_auth)
-  "X-Device-User-Token": "cr1NO_mknfCMntZBJEWRkKyXRQ4Z3mODVcZ3U5vE9Ms" #YOUR Device-User-Token (can be copied from "requested headers" session in any query)
-}
+  "X-Api-Key": "YOUR OWN XAPIX Authentication (token_auth)", 
+  "X-Device-User-Token": "YOUR Device-User-Token (can be copied from requested headers session in any query)"
+  }
 
-@channel="@feiran-xapix-io" #YOUR SLAKC USERNAME IN THE FORMAT OF @username
+@channel="YOUR SLACK USERNAME IN THE FORMAT OF @username"
 
 @bitcoin_url = "https://xap.ix-io.net/api/v1/coin_market_cap/specific_currencies?filter%5Bcurrency%5D=bitcoin&fields%5Bspecific_currencies%5D=currency%2Cname%2Csymbol%2Crank%2Cprice_usd%2Cprice_btc%2Cvolume_usd_24h%2Cmarket_cap_usd%2Cavailable_supply%2Ctotal_supply%2Cpercent_change_1h%2Cpercent_change_24h%2Cpercent_change_7d%2Clast_updated%2Cx_id&sort=currency&page%5Bnumber%5D=1&page%5Bsize%5D=10000
 "
